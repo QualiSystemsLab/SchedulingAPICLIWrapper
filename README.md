@@ -26,6 +26,7 @@ C:\github\quali\debuging\Job_Scheduling_API>python run_job.py -t ASharedTest_nob
 
 
 output:
+
 no blueprint name recieved!
 
 Job request has been recieved. expected duration is 3 minutes
