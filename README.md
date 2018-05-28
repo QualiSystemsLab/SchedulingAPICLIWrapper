@@ -23,11 +23,21 @@ the creds.json contains the credentials and server location used.
 example:
 
 C:\github\quali\debuging\Job_Scheduling_API>python run_job.py -t ASharedTest_nobp -d 3 -p leInput:22,leInput1:cndeg
+
+
+output:
 no blueprint name recieved!
+
 Job request has been recieved. expected duration is 3 minutes
+
 The current status of the Job is Scheduled
+
 The current status of the Job is Running
+
 The current status of the Job is Running
+
 The current status of the Job is Done
+
 The Job result is Passed
+
 Link to Report: http://QS-IL-LT-YOAVE:88/Test/Report?ReportId=85a7de63-cbb9-44bd-9be2-2b86ccc5d097
