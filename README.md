@@ -6,17 +6,19 @@ a cli wrapper for job scheduling via CLI
 usage: python run_job.py [-h] [-t TEST] [-b BLUEPRINT] [-d DURATION] [-p PARAMETER]
 
 optional arguments:
+
   -h, --help            show this help message and exit
-  -t TEST, --test TEST  The name of the test to run. note: it must be in
-                        Shared
-  -b BLUEPRINT, --blueprint BLUEPRINT
+
+-t TEST, --test TEST  The name of the test to run. note: it must be in Shared
+
+-b BLUEPRINT, --blueprint BLUEPRINT
                         The name of the blueprint to reserve
-  -d DURATION, --duration DURATION
-                        The duration of the test to run, in minutes. the
-                        default is 5 minutes
-  -p PARAMETER, --parameter PARAMETER
-                        parameters required by the test. usage: parameter1Name
-                        :parameter1Value,parameter2Name:parameter2Value
+
+-d DURATION, --duration DURATION
+                        The duration of the test to run, in minutes. the default is 5 minutes
+
+-p PARAMETER, --parameter PARAMETER
+                        parameters required by the test. usage: parameter1Name:parameter1Value,parameter2Name:parameter2Value                  
                        
 the creds.json contains the credentials and server location used.
 
