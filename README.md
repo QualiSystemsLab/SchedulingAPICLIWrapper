@@ -1,4 +1,6 @@
 # SchedulingAPICLIWrapper
+to install , unpack the Job_Scheduling_API.zip and run using python from the folder you have unpacked into
+
 a cli wrapper for job scheduling via CLI
 
 usage: python run_job.py [-h] [-t TEST] [-b BLUEPRINT] [-d DURATION] [-p PARAMETER]
