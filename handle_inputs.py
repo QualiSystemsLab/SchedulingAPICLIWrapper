@@ -18,6 +18,7 @@ class input_data(object):
         self.blueprint = ''
         self.duration = ''
         self.parameters = []
+        self.globalinputs = []
 
 
     def get_user_inputs(self):
@@ -30,6 +31,8 @@ class input_data(object):
                             help="The duration of the test to run, in minutes. the default is 5 minutes ")
         parser.add_argument("-p", "--parameter",
                             help="parameters required by the test. usage: parameter1Name:parameter1Value,parameter2Name:parameter2Value")
+        parser.add_argument("-g", "--globalinputs",
+                            help="parameters required by the blueprint. usage: parameter1Name:parameter1Value,parameter2Name:parameter2Value")
         args = parser.parse_args()
         # handle the test input:
         if args.test:
@@ -40,6 +43,12 @@ class input_data(object):
         # handle the blueprint input:
         if args.blueprint:
             self.blueprint = args.blueprint
+            if args.globalinputs:
+                g_parameters = args.globalinputs.split(',')
+                for g_param in g_parameters:
+                    self.globalinputs.append(parameter(g_param.split(':')[0], g_param.split(':')[1]))
+            else:
+                print ("no input parameters for the blueprint have been recieved!")
         else:
             print ("no blueprint name recieved!")
         # handle the blueprint input:
@@ -51,26 +60,8 @@ class input_data(object):
         if args.parameter:
             parameters = args.parameter.split(',')
             for param in parameters:
-                self.parameters.append(parameter(param.split(':')[0],param.split(':')[1]))
+                self.parameters.append(parameter(param.split(':')[0], param.split(':')[1]))
+                print self.parameters[0].Name
+                print self.parameters[0].Value
         else:
             print ("no input parameters for the test have been recieved!")
-
-
-        # if sys.argv.__len__() < 2:
-        #     print ("no test name recieved!")
-        #     print ("USAGE python run_job.py <test_name> <blueprint_name> <duration>")
-        #     print ("default duration is 5 minutes")
-        #     sys.exit(2)
-        # self.test = sys.argv[1]
-        # if self.test in ['help', 'h' , '--help', '?']:
-        #     print "USAGE python run_job.py <test_name> <blueprint_name> <duration>"
-        #     print "default duration is 5 minutes"
-        #     sys.exit()
-        # if sys.argv.__len__() == 3:
-        #     self.blueprint = sys.argv[2]
-        # else:
-        #     self.blueprint = ''
-        # if sys.argv.__len__() == 4:
-        #     self.duration = sys.argv[3]
-        # else:
-        #     self.duration = '5'

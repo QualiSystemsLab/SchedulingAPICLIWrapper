@@ -10,11 +10,17 @@ class rest_handler():
                 'Authorization': 'Basic {0}'.format(self.login)
         }
 
-    def run_job(self, test_name, blueprint='', duration="5", parameters=[] ):
+    def run_job(self, test_name, blueprint='', duration="5", parameters=[], global_inputs=[]):
+        test_parameters = []
         for parameter in parameters:
-            parameters.append({"ParameterName": "{0}", "ParameterValue": "{1}".format(
-                                                                    parameter.Name,
-                                                                    parameter.Value)})
+            test_parameters.append({"ParameterName": "{0}".format(parameter.Name),
+                                    "ParameterValue": "{0}".format(parameter.Value)})
+        bp_global_inputs = []
+        for global_input in global_inputs:
+            bp_global_inputs.append({"Name": "{0}".format(global_input.Name),
+                                     "Value": "{0}".format(global_input.Value)})
+
+
         job_data ={
                     "name": "automated_job",
                     "description": "",
@@ -27,12 +33,12 @@ class rest_handler():
                         {
                             "TestPath": "TestShell\\Tests\\Shared\\{0}".format(test_name),
                             "TestDuration": "2",
-                            "Parameters": parameters
+                            "Parameters": test_parameters
                         }
                     ],
                     "Topology": {
                         "Name": "{0}".format(blueprint),
-                        "GlobalInputs": [],
+                        "GlobalInputs": bp_global_inputs,
                         "RequirementsInput": [],
                         "AdditionalInput": []
                     },

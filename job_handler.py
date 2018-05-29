@@ -14,7 +14,7 @@ class run_job():
         print ("Job request has been recieved. expected duration is {0} minutes".format(input_handler.duration))
         job_state = ''
         job_status = ''
-        while job_state != 'Done':
+        while job_state not in ['Done', 'Cancelled']:
             job_status = json.loads(rest_handler.get_job_details(job_id=job_info.text[1:-1]).text)
             job_state = job_status.get('JobState')
             time.sleep(10)
