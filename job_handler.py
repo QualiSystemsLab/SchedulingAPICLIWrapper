@@ -11,7 +11,7 @@ class run_job():
         if not job_info:
             print ("Cannot Start Job! exiting")
             sys.exit(100)
-        print ("Job request has been recieved. expected duration is {0} minutes".format(input_handler.duration))
+        print ("Job request has been recieved. estimated duration is {0} minutes".format(input_handler.jobDuration))
         job_state = ''
         job_status = ''
         while job_state not in ['Done', 'Cancelled']:
@@ -21,3 +21,6 @@ class run_job():
             print "The current status of the Job is {0}".format(job_state)
         print "The Job result is {0}".format(job_status.get('JobResult'))
         print "Link to Report: {}".format(job_status.get('Tests')[0].get('ReportLink'))
+        print 'the job has started at : {0}'.format(job_status.get('StartTime'))
+        print 'the job has ended at   : {0}'.format(job_status.get('EndTime'))
+        print 'total time taken       : {0}'.format(job_status.get('ElapsedTime'))

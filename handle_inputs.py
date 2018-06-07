@@ -27,12 +27,17 @@ class input_data(object):
                             help="The name of the test to run. note: it must be in Shared")
         parser.add_argument("-b", "--blueprint",
                             help="The name of the blueprint to reserve")
-        parser.add_argument("-d", "--duration",
-                            help="The duration of the test to run, in minutes. the default is 5 minutes ")
+        parser.add_argument("-j", "--jobDuration",
+                            help="The duration of the job to run, in minutes. the default is 5 minutes ")
+        parser.add_argument("-d", "--testDuration",
+                            help="The duration of the test to run, in minutes. the default is 3 minutes ")
         parser.add_argument("-p", "--parameter",
                             help="parameters required by the test. usage: parameter1Name:parameter1Value,parameter2Name:parameter2Value")
         parser.add_argument("-g", "--globalinputs",
                             help="parameters required by the blueprint. usage: parameter1Name:parameter1Value,parameter2Name:parameter2Value")
+        parser.add_argument("-e", "--executionServers",
+                            help="specific Execution servers to be used. usage: es1,es2")
+
         args = parser.parse_args()
         # handle the test input:
         if args.test:
@@ -51,11 +56,22 @@ class input_data(object):
                 print ("no input parameters for the blueprint have been recieved!")
         else:
             print ("no blueprint name recieved!")
-        # handle the blueprint input:
-        if args.duration:
-            self.duration = args.duration
+        # handle the Durations:
+        if args.jobDuration:
+            self.jobDuration = args.jobDuration
         else:
-            print ("no duration recieved! using default value of 5 minutes")
+            self.jobDuration = '5'
+            print ("no job duration recieved! using default value of 5 minutes")
+        if args.testDuration:
+            self.testDuration = args.testDuration
+        else:
+            self.testDuration = '3'
+            print ("no test duration recieved! using default value of 3 minutes")
+        # handle the execution servers
+        if args.executionServers:
+            es_list = args.executionServers.split(',')
+            self.executionServers = es_list
+            print ("Execution servers used : {0}".format(','.join(self.executionServers)))
         # handle the parameters input:
         if args.parameter:
             parameters = args.parameter.split(',')

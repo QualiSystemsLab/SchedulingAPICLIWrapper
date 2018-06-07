@@ -10,7 +10,8 @@ class rest_handler():
                 'Authorization': 'Basic {0}'.format(self.login)
         }
 
-    def run_job(self, test_name, blueprint='', duration="5", parameters=[], global_inputs=[]):
+    def run_job(self, test_name, blueprint='', jobDuration="5",
+                parameters=[], global_inputs=[], executionServers=[], testDuration="3"):
         test_parameters = []
         for parameter in parameters:
             test_parameters.append({"ParameterName": "{0}".format(parameter.Name),
@@ -24,15 +25,15 @@ class rest_handler():
         job_data ={
                     "name": "automated_job",
                     "description": "",
-                    "executionServers": [],
+                    "executionServers": executionServers,
                     "loggingProfile": "All",
-                    "estimatedDuration": "{}".format(duration),
+                    "estimatedDuration": "{}".format(jobDuration),
                     "stopOnFail": "false",
                     "stopOnError": "false",
                     "tests": [
                         {
                             "TestPath": "TestShell\\Tests\\Shared\\{0}".format(test_name),
-                            "TestDuration": "2",
+                            "TestDuration": "{}".format(testDuration),
                             "Parameters": test_parameters
                         }
                     ],

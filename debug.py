@@ -15,11 +15,11 @@ input_handler.parameters = [
     parameter('leInput', 'aaa'),
     parameter('leInput1','1qazxsw2')
 ]
-input_handler.blueprint = 'Hrvatski Telekom Demo'
-input_handler.globalinputs = [
-    parameter('CPE Name', 'CPE 1'),
-    parameter('DSLAM Name','DSLAM 1')
-]
+# input_handler.blueprint = 'Hrvatski Telekom Demo'
+# input_handler.globalinputs = [
+#     parameter('CPE Name', 'CPE 1'),
+#     parameter('DSLAM Name','DSLAM 1')
+# ]
 
 rest_handler = rest_api_handler.rest_handler(login_data=input_handler.creds_json)
 job_info = rest_handler.run_job(test_name=input_handler.test,
